@@ -1,0 +1,9 @@
+<button 
+    [type]="type || 'button'" 
+    (click)="handleClick()" 
+    [ngClass]="'btn btn-primary '+ class" 
+    [disabled]="disabled"
+>
+    <span *ngIf="processing" class="spinner-border custom-border"></span>
+    <span *ngIf="!processing">{{innerText}}</span>
+</button>

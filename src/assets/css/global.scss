@@ -1,0 +1,54 @@
+
+// ----------- Helpers ----------- //
+
+@import './helpers/variables.scss';
+@import './helpers/fonts.scss';
+@import './helpers/font-wieght.scss';
+@import './helpers/font-size.scss';
+@import './helpers/width.scss';
+@import './helpers/heigth.scss';
+@import './helpers/spacing.scss';
+@import './helpers/opacity.scss';
+@import './helpers/border-radius.scss';
+@import './helpers/color-scheme.scss';
+
+body{
+    font-family: $themeFont;
+    font-weight: 400;
+    color: $paragraph;
+    margin: 0;
+    padding: 0;
+    color: #000;
+}
+
+.w-fit{
+    width: fit-content;
+}
+
+.cp{
+    cursor: pointer;
+}
+
+button:disabled{
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.error-label{
+    color: #DC3545;
+    font-size: .8em;
+    padding: 3px 12px;
+    height: 26px;
+}
+
+.center{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+a:hover{
+    text-decoration: none;
+}

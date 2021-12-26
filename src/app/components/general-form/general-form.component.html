@@ -1,0 +1,21 @@
+<div class="container">
+    <form [class]="'row ' + props.class" [style]="props.style" [formGroup]="generalForm" (submit)="Submit()">
+        <ng-container *ngFor="let element of props.elements">
+            <div *ngIf="element.category === 'input'" [class]="element.class" [style]="element.style" >
+                <input
+                    [class]="'form-control ' + element.fieldClass" 
+                    [style]="element.fieldStyle"
+                    [formControlName]="element.name"
+                    [ngClass]="generalForm.controls[element.name].invalid ? 'is-invalid' : ''"
+                    [type]="element.type"
+                />
+                <div class="error-label">{{generalForm.controls[element.name].invalid ? 'error' : ''}}</div>
+            </div>
+        </ng-container>
+    
+        <button [class]="'btn btn-primary ' + props.submitBtn.class" [style]="props.submitBtn.style" type="submit">
+            <span *ngIf="processing" class="spinner-border custom-border"></span>
+            <span *ngIf="!processing">{{props.submitBtn.innerText}}</span>
+        </button>
+    </form>
+</div>
