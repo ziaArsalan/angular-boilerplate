@@ -5,29 +5,42 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { ButtonPrimary } from './components/button-primary/button-primary.component';
 import { GeneralForm } from './components/general-form/general-form.component';
+import { HandleErrorsInterceptor } from './_services/request.intercept';
+import { MainService } from './_services';
 
 @NgModule({
   declarations: [
     AppComponent,
     ButtonPrimary,
-    GeneralForm
+    GeneralForm,
   ],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  // providers: [
+  //   {
+  //     provide: HTTP_INTERCEPTORS,
+  //     useClass: HandleErrorsInterceptor,
+  //     multi: true
+  //   }
+  // ],
+  providers: [
+    MainService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

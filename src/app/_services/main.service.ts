@@ -1,23 +1,16 @@
+import { Injectable } from '@angular/core'
 import axios from 'axios'
 import env from '../_config'
 
-import { Handlers } from '../_utils'
-
+import { HandleResponse } from '../_utils'
 
 const BASE_URL_V1 = env.API_URL + '/v1'
-
+    
 const APIs = {
     auth : {
         login  : BASE_URL_V1 + '/auth/login',
         signup : BASE_URL_V1 + '/auth/signup',
     }
-}
-
-const getTokenHeader = async () => {
-    let user:any = localStorage.getItem('user')
-    if(!user) return {}
-    user = JSON.parse(user)
-    return { 'x-auth-token': 'Bearer ' + user.token }
 }
 
 interface service {
@@ -28,23 +21,34 @@ interface service {
     token?   : boolean
 }
 
-const CallService = async ({method, path, query, payload, token=true} : service) => {
-    const pathname = query ? path + '?'+ query : path
 
-    const config = token ? {headers: await getTokenHeader()} : {}
+@Injectable()
 
-    const details:any = {}
+export class MainService {
 
-    if(payload) details.payload = payload
-    details.config = config
+    constructor(private handleResponse: HandleResponse){}
 
-    return await (axios as any)[method](pathname, ...Object.values(details))
-}
+    getTokenHeader = async () => {
+        let user:any = localStorage.getItem('user')
+        if(!user) return {}
+        user = JSON.parse(user)
+        return { 'x-auth-token': 'Bearer ' + user.token }
+    }
 
+    getAPIs = () => APIs
 
-export const MainService = {
-    APIs,
-    CallService : Handlers.Services(CallService),
-    getTokenHeader
+    CallService = this.handleResponse.Services(async ({method, path, query, payload, token=true} : service) => {
+        const pathname = query ? path + '?'+ query : path
+    
+        const config = token ? {headers: await this.getTokenHeader()} : {}
+    
+        const details:any = {}
+    
+        if(payload) details.payload = payload
+        details.config = config
+    
+        return await (axios as any)[method](pathname, ...Object.values(details))
+    })
+
 }
 

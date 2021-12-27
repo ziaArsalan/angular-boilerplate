@@ -9,7 +9,8 @@
             {category: 'input', name: 'email', type: 'email'},
             {category: 'input', name: 'password', type: 'password', class: 'col-6'},
         ],
-        submitBtn    : {innerText: 'Save'},
-        handleSubmit : handleSubmit
+        submitBtn    : {innerText: 'Save'}
     }"
+    (handleSubmit)="handleSubmit($event)"
 ></general-form>
+<button (click)="handleSubmit($event)">Test</button>

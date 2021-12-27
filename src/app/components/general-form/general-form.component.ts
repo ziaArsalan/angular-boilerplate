@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormBuilder } from '@angular/forms'
+import { MainService } from 'src/app/_services'
 
 import { createValidatorFromSchema } from 'src/app/_validators'
 
@@ -27,7 +28,6 @@ interface generalformProps {
     fields       : object,
     schema?      : object,
     elements     : element[],
-    handleSubmit : any,
     submitBtn    : submitBtn
 }
 
@@ -45,11 +45,12 @@ export class GeneralForm implements OnInit {
         fields       : {},
         schema       : {},
         elements     : [],
-        handleSubmit : '',
         submitBtn    : {class: '', style: '', innerText: ''}
     }
 
     @Input() props : generalformProps = this.defaultProps
+    
+    @Output() handleSubmit = new EventEmitter<object>()
 
 
     processing  = false
@@ -63,7 +64,7 @@ export class GeneralForm implements OnInit {
 
     async Submit(){
         this.processing = true
-        this.props.handleSubmit && await this.props.handleSubmit(this.generalForm.value)
+        this.handleSubmit.emit(this.generalForm.value)
         this.processing = false
     }
 

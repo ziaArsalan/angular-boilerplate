@@ -11,13 +11,19 @@ import { login } from './_validators';
 })
 export class AppComponent{
 
+  constructor(public mainService: MainService) {
+    console.log(this.mainService);
+    
+  }
+
   loginSchema = login
+
 
   async handleSubmit(form:any): Promise<ServiceResponse> {
 
-    const result = await MainService.CallService({
+    const result = await this.mainService.CallService({
       method  : ReqMethods.POST,
-      path    : MainService.APIs.auth.login,
+      path    : this.mainService.getAPIs().auth.login,
       payload : form,
       token   : false
     })
