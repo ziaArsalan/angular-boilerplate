@@ -1,0 +1,22 @@
+<div class="center">
+    <div class="card w-45 mx-auto h-60 center">
+        <div class="py-30 w-80">
+            <h2>Login</h2>
+            <general-form
+                [props]="{
+                    schema       : loginSchema,
+                    fields       : {
+                        email    : '',
+                        password : ''
+                    },
+                    elements     : [
+                        {category: 'input', name: 'email', type: 'email'},
+                        {category: 'input', name: 'password', type: 'password', class: 'col-6'},
+                    ],
+                    submitBtn    : {innerText: 'Save'}
+                }"
+                (handleSubmit)="handleSubmit($event)"
+            ></general-form>
+        </div>
+    </div>
+</div>

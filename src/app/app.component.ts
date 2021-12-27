@@ -22,7 +22,7 @@ export class AppComponent{
   async handleSubmit(form:any): Promise<ServiceResponse> {
 
     const result = await this.mainService.CallService({
-      method  : ReqMethods.POST,
+      method  : 'post',
       path    : this.mainService.getAPIs().auth.login,
       payload : form,
       token   : false

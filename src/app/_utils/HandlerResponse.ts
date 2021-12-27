@@ -8,7 +8,7 @@ interface ServiceHandler {
     toaster? : boolean,
     message? : string,
     error?   : string,
-    method   : string,
+    method   : 'get' | 'post' | 'put' | 'delete' | 'all',
     path     : string,
     query?   : string,
     payload? : object,

@@ -1,7 +1,7 @@
 <div class="container">
     <form [class]="'row ' + props.class" [style]="props.style" [formGroup]="generalForm" (submit)="Submit()">
         <ng-container *ngFor="let element of props.elements">
-            <div *ngIf="element.category === 'input'" [class]="element.class" [style]="element.style" >
+            <div *ngIf="element.category === 'input'" [class]="element.class + ' px-0'" [style]="element.style" >
                 <input
                     [class]="'form-control ' + element.fieldClass" 
                     [style]="element.fieldStyle"
@@ -9,7 +9,7 @@
                     [ngClass]="generalForm.controls[element.name].invalid ? 'is-invalid' : ''"
                     [type]="element.type"
                 />
-                <div class="error-label">{{generalForm.controls[element.name].invalid ? 'error' : ''}}</div>
+                <div class="error-label">{{generalForm.controls[element.name].invalid ? generalForm.controls[element.name].errors : ''}}</div>
             </div>
         </ng-container>
     

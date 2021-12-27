@@ -1,7 +1,7 @@
 import { FormGroup, ValidatorFn } from '@angular/forms';
 
 export function  createValidatorFromSchema(schema:any): ValidatorFn {
-    const validator: any = async (group: FormGroup) => {
+    const validator:any = (group: FormGroup) => {
       // This is where the validation on the values of
       // the form group is run.
       // abortEarly check false not throw error at once but return complete detail for the object values
@@ -18,7 +18,7 @@ export function  createValidatorFromSchema(schema:any): ValidatorFn {
         for (const key in errorObj) {
           const control = group.get(key);
           if (control && control.dirty) {
-            control.setErrors({ [key]: errorObj[key] });
+            control.setErrors(errorObj[key]);
           }
         }
 
