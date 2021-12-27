@@ -12,7 +12,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { ButtonPrimary } from './components/button-primary/button-primary.component';
 import { GeneralForm } from './components/general-form/general-form.component';
-import { HandleErrorsInterceptor } from './_services/request.intercept';
 import { MainService } from './_services';
 
 @NgModule({
@@ -31,13 +30,6 @@ import { MainService } from './_services';
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  // providers: [
-  //   {
-  //     provide: HTTP_INTERCEPTORS,
-  //     useClass: HandleErrorsInterceptor,
-  //     multi: true
-  //   }
-  // ],
   providers: [
     MainService
   ],

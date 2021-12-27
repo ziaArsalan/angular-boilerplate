@@ -26,7 +26,6 @@ export class HandleResponse {
             try {
                 const res = await fn(props)
                 console.log('API - RESPONSE', res)
-                // toaster && utils.showToaster({title: 'Success', message: message || res.data.message, severity: 'success'})
                 toaster && this.toaster.success(message || res.data.message, 'Success', {timeOut: enums.TOASTER_DELAY})
                 return { response : res.data}
             } catch (err:any) {
@@ -34,13 +33,11 @@ export class HandleResponse {
     
                 // expire error : jwt expired
                 if(err.response && err.response.status === enums.ResponseStatus.UNAUTHORIZED) {
-                    // utils.showToaster({position: 'top-right', title: 'Error', message: error || 'session expired', severity: 'error'})
                     toaster && this.toaster.error(error || 'session expired', 'Error', {timeOut: enums.TOASTER_DELAY})
                     setTimeout(utils.Logout, enums.TOASTER_DELAY)
                     return { error: err.response ? err.response.data : err}
                 }
     
-                // toaster && utils.showToaster({title: 'Error', message: error || err.response ? err.response.data.message : err.message, severity: 'error'})
                 toaster && this.toaster.error(error || err.response ? err.response.data.message : err.message, 'Error', {timeOut: enums.TOASTER_DELAY})
                 return { error: err.response ? err.response.data : err}
             }
