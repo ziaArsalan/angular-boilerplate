@@ -17,11 +17,17 @@ import { AppComponent } from './app.component';
 
 // Services
 import { MainService } from './_services';
+import { FormComponent } from './pages/form/form.component';
+import { ChildComponent } from './pages/form/child/child.component';
+import { SubmitComponent } from './pages/form/submit/submit.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    FormComponent,
+    ChildComponent,
+    SubmitComponent
   ],
   imports: [
     CommonModule,

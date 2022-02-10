@@ -1,0 +1,16 @@
+
+<form [formGroup]="form" (ngSubmit)="Submit()">
+    <app-child
+        label="Name"
+        control="name"
+        [formGroup]="form"
+        [error]="form.controls.name.errors && 'error'"
+    ></app-child>
+    <app-child
+        label="Age"
+        control="age"
+        [formGroup]="form"
+        [error]="form.controls.age.errors && 'error'"
+    ></app-child>
+    <app-submit></app-submit>
+</form>

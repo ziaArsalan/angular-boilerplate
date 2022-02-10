@@ -1,0 +1,5 @@
+<div [formGroup]="formGroup">
+    <div>{{label}}</div>
+    <input [formControlName]="control" />
+    <div *ngIf="error">{{error}}</div>
+</div>
